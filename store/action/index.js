@@ -4,6 +4,8 @@ import {
   SET_TOKEN,
   SET_USER,
   SET_USERS,
+  SET_WACANAS,
+  SET_ARTICLES,
 } from "./action-types";
 
 const baseUrl = "http://192.168.43.7:3000";
@@ -48,6 +50,42 @@ export const setToken = (data) => {
 export const setAuth = (data) => {
   return {
     type: SET_TOKEN,
+    payload: data,
+  };
+};
+
+export const getWacanas = () => {
+  return (dispatch) => {
+    axios
+      .get(`${baseUrl}/app/wacanas`)
+      .then(({ data }) => {
+        dispatch(setWacana(data.wacanas));
+      })
+      .catch(console.log);
+  };
+};
+
+export const setWacana = (data) => {
+  return {
+    type: SET_WACANAS,
+    payload: data,
+  };
+};
+
+export const getArticles = (id) => {
+  return (dispatch) => {
+    axios
+      .get(`${baseUrl}/app/articles/${id}`)
+      .then(({ data }) => {
+        dispatch(setArticles(data.article));
+      })
+      .catch(console.log);
+  };
+};
+
+export const setArticles = (data) => {
+  return {
+    type: SET_ARTICLES,
     payload: data,
   };
 };

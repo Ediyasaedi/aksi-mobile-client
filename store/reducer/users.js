@@ -4,7 +4,7 @@ const initState = {
   isAuthentication: false,
   token: null,
   user: {},
-  isLoading: true,
+  isLoading: false,
   isSignout: false,
 };
 
