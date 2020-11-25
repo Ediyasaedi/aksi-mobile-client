@@ -8,7 +8,6 @@ import { getWacanas } from "../store/action";
 export default function Home({ navigation }) {
   const wacanas = useSelector((state) => state.wacanas.wacanaList);
   const dispatch = useDispatch();
-  console.log(wacanas, "home");
 
   useEffect(() => {
     dispatch(getWacanas());

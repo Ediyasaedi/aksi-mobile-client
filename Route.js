@@ -6,6 +6,7 @@ import {
   ArticlePage,
   Home,
   Login,
+  Profile,
   QuestionsPage,
   Register,
   ResultPage,
@@ -30,10 +31,11 @@ export default function Route() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isAuth || userToken === null ? (
           <>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="ResultPage" component={ResultPage} />
-            <Stack.Screen name="QuestionsPage" component={QuestionsPage} />
+            <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="ArticlePage" component={ArticlePage} />
+            <Stack.Screen name="QuestionsPage" component={QuestionsPage} />
           </>
         ) : (
           <>

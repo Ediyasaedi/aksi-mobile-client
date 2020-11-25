@@ -1,39 +1,75 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
-import { SwitcherQnA } from "../components";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function ResultPage() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 10,
-      }}
-    >
+    <View style={styles.textContainer}>
       <View
         style={{
-          flex: 1,
           justifyContent: "center",
           alignItems: "center",
           padding: 10,
         }}
       >
-        <Text style={{ textAlign: "center" }}>
-          Selamat, Kamu telah membaca dan menjawab Wacana: Robotik
+        <Text style={styles.baseText}>
+          Kamu telah menyelesaikan wacana:{" "}
+          <Text style={styles.innerText}>Hoaks</Text>
         </Text>
-        <Text>Skor:</Text>
-        <Text>9/10</Text>
-        <View
-          style={{
-            flexDirection: "row",
-          }}
-        >
-          <Button title="Coba Lagi" />
-          <Button title="Simpan" />
-        </View>
+        <Text style={styles.baseText}>
+          Skor kamu: <Text style={styles.innerText}>80</Text>
+        </Text>
+      </View>
+      <View style={styles.toQuestions}>
+        <TouchableOpacity style={styles.btnStyles}>
+          <Text style={{ color: "white" }}>Simpan</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnStyles}>
+          <Text style={{ color: "white" }}>Coba Lagi</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  textContainer: {
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  baseText: {
+    fontWeight: "bold",
+    fontSize: 20,
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  innerText: {
+    color: "red",
+  },
+  articleContainer: {
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  toQuestions: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    margin: 10,
+    borderRadius: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  btnStyles: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    margin: 10,
+    borderRadius: 10,
+    flex: 1,
+    backgroundColor: "red",
+  },
+});

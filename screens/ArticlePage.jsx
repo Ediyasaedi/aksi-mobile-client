@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
-import { ArticleContent, SwitcherQnA } from "../components";
+import { ArticleContent } from "../components";
 import { getArticles } from "../store/action";
 
 export default function ArticlePage({ route, navigation }) {
@@ -12,6 +13,13 @@ export default function ArticlePage({ route, navigation }) {
   useEffect(() => {
     dispatch(getArticles(itemId));
   }, []);
+
+  function showQuestions() {
+    navigation.navigate("QuestionsPage", {
+      itemId,
+      title,
+    });
+  }
 
   return (
     <ScrollView>
@@ -33,13 +41,9 @@ export default function ArticlePage({ route, navigation }) {
           );
         })}
         <View style={styles.toQuestions}>
-          <SwitcherQnA
-            text="Tampilkan Pertanyaan"
-            itemId={itemId}
-            identy="toQuestions"
-            navigation={navigation}
-            title={title}
-          />
+          <TouchableOpacity onPress={showQuestions}>
+            <Text style={{ color: "white" }}>Tampilkan Pertanyaan</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -67,5 +71,9 @@ const styles = StyleSheet.create({
   toQuestions: {
     justifyContent: "center",
     alignItems: "center",
+    padding: 15,
+    backgroundColor: "red",
+    margin: 10,
+    borderRadius: 10,
   },
 });

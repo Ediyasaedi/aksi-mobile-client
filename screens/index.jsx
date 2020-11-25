@@ -5,6 +5,7 @@ import ArticlePage from "./ArticlePage";
 import QuestionsPage from "./QuestionsPage";
 import ResultPage from "./ResultPage";
 import SplashScreen from "./SplashScreen";
+import Profile from "./Profile";
 
 export {
   ArticlePage,
@@ -14,4 +15,5 @@ export {
   QuestionsPage,
   ResultPage,
   SplashScreen,
+  Profile,
 };

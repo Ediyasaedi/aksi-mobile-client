@@ -6,18 +6,20 @@ import RadioForm, {
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
 
-export default function Question() {
-  const [value, setValue] = useState(0);
+export default function Question({ question, getValue }) {
+  const [value, setValue] = useState(question.pilihan_a);
   let radio_props = [
-    { label: "opsi 1", value: 0 },
-    { label: "opsi 2", value: 1 },
-    { label: "opsi 3", value: 2 },
-    { label: "opsi 4", value: 3 },
+    { label: question.pilihan_a, value: question.pilihan_a },
+    { label: question.pilihan_b, value: question.pilihan_b },
+    { label: question.pilihan_c, value: question.pilihan_c },
+    { label: question.pilihan_d, value: question.pilihan_d },
   ];
 
   function setState(v) {
     setValue(v);
+    getValue(v, question.id);
   }
+
   return (
     <View
       style={{
@@ -26,19 +28,18 @@ export default function Question() {
         justifyContent: "center",
         marginBottom: 10,
         padding: 10,
-        width: 325,
       }}
     >
-      <Text style={{ marginBottom: 15 }}>
-        Ini pertanyaannya yah tolong dijawab dengan baik dan benar
-      </Text>
-      <RadioForm
-        radio_props={radio_props}
-        initial={value}
-        onPress={(value) => {
-          setState(value);
-        }}
-      />
+      <Text style={{ marginBottom: 15 }}>{question.soal}</Text>
+      <View style={{ padding: 5, width: 275 }}>
+        <RadioForm
+          radio_props={radio_props}
+          initial={value}
+          onPress={(value) => {
+            setState(value);
+          }}
+        />
+      </View>
     </View>
   );
 }

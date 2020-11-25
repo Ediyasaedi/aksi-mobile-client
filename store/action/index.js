@@ -6,6 +6,7 @@ import {
   SET_USERS,
   SET_WACANAS,
   SET_ARTICLES,
+  SET_QUESTIONS,
 } from "./action-types";
 
 const baseUrl = "http://192.168.43.7:3000";
@@ -86,6 +87,24 @@ export const getArticles = (id) => {
 export const setArticles = (data) => {
   return {
     type: SET_ARTICLES,
+    payload: data,
+  };
+};
+
+export const getQuestions = (id) => {
+  return (dispatch) => {
+    axios
+      .get(`${baseUrl}/app/questions/${id}`)
+      .then(({ data }) => {
+        dispatch(setQuestions(data.question));
+      })
+      .catch(console.log);
+  };
+};
+
+export const setQuestions = (data) => {
+  return {
+    type: SET_QUESTIONS,
     payload: data,
   };
 };
