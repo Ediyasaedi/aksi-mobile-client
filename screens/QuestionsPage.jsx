@@ -35,7 +35,9 @@ export default function QuestionsPage({ route, navigation }) {
     console.log(answers);
   }
 
-  function submitTest() {}
+  function submitTest() {
+    navigation.navigate("ResultPage");
+  }
 
   return (
     <ScrollView>

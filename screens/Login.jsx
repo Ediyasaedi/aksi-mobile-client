@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import logo from "../assets/logo.png";
 import { loginUser } from "../store/action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthContext } from "../Route";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 const screenHeight = Math.round(Dimensions.get("window").height);
@@ -18,6 +18,8 @@ const screenHeight = Math.round(Dimensions.get("window").height);
 export default function Login({ navigation: { navigate } }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signIn } = React.useContext(AuthContext);
+  const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
 
   function emailOnChange(text) {
@@ -31,15 +33,13 @@ export default function Login({ navigation: { navigate } }) {
   function handleOnSubmit() {
     let payload = { email, password };
     dispatch(loginUser(payload));
+    signIn(token);
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.greetingImg}>
-        <Image
-          source={logo}
-          style={{ width: screenWidth / 2, height: screenHeight / 6 }}
-        />
+        <Text style={styles.textWelcome}>Halaman Login</Text>
       </View>
       <View style={styles.formContainer}>
         <Text style={styles.labelText}>Masukan Email:</Text>
@@ -60,7 +60,7 @@ export default function Login({ navigation: { navigate } }) {
         </TouchableOpacity>
         <View style={styles.gotoRegister}>
           <Text style={styles.labelText}>Belum punya akun? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <TouchableOpacity onPress={() => navigate("Register")}>
             <Text style={{ color: "#4e7474", textDecorationLine: "underline" }}>
               Daftar Disini
             </Text>
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     padding: 10,
+    flex: 3,
   },
   gotoRegister: {
     flexDirection: "row",
@@ -112,5 +113,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     opacity: 0.8,
+    flex: 1,
+  },
+  textWelcome: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#4e7474",
   },
 });

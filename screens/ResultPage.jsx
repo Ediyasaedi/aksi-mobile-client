@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function ResultPage() {
+export default function ResultPage({ navigation: { navigate } }) {
   return (
     <View style={styles.textContainer}>
       <View
@@ -20,10 +20,16 @@ export default function ResultPage() {
         </Text>
       </View>
       <View style={styles.toQuestions}>
-        <TouchableOpacity style={styles.btnStyles}>
+        <TouchableOpacity
+          style={styles.btnStyles}
+          onPress={() => navigate("Profile")}
+        >
           <Text style={{ color: "white" }}>Simpan</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnStyles}>
+        <TouchableOpacity
+          style={styles.btnStyles}
+          onPress={() => navigate("Home")}
+        >
           <Text style={{ color: "white" }}>Coba Lagi</Text>
         </TouchableOpacity>
       </View>

@@ -50,12 +50,9 @@ export default function Register({ navigation: { goBack, navigate } }) {
   return (
     <View style={styles.container}>
       <View style={styles.greetingImg}>
-        <Image
-          source={logo}
-          style={{ width: screenWidth / 2, height: screenHeight / 6 }}
-        />
+        <Text style={styles.textWelcome}>Halaman Register</Text>
       </View>
-      <View>
+      <View style={styles.formContainer}>
         <Text style={styles.labelText}>Masukan Email:</Text>
         <TextInput
           style={styles.inputText}
@@ -134,5 +131,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     opacity: 0.8,
+    flex: 1,
+  },
+  textWelcome: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#4e7474",
+  },
+  formContainer: {
+    padding: 10,
+    flex: 4,
   },
 });
