@@ -28,7 +28,7 @@ export default function ResultPage({ navigation: { navigate } }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnStyles}
-          onPress={() => navigate("Home")}
+          onPress={() => navigate("ReviewPage")}
         >
           <Text style={{ color: "white" }}>Coba Lagi</Text>
         </TouchableOpacity>

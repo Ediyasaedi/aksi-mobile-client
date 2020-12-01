@@ -1,17 +1,25 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Badge } from "react-native-elements";
+import { Badge, Icon } from "react-native-elements";
 
-export default function Skor({ title, skor }) {
+export default function Skor({ title, skor, date }) {
   return (
     <View style={styles.toQuestions}>
       <Text style={styles.baseText}>{title} : </Text>
-      <Badge
-        status="error"
-        value={skor}
-        textStyle={styles.innerText}
-        containerStyle={styles.textContainer}
-      />
+      <View style={{ flexDirection: "row", padding: 5 }}>
+        <Badge
+          status="error"
+          value={skor}
+          textStyle={styles.innerText}
+          containerStyle={styles.textContainer}
+        />
+        <Icon
+          name="trash"
+          type="font-awesome"
+          color="#f50"
+          onPress={() => alert(date)}
+        />
+      </View>
     </View>
   );
 }
@@ -20,6 +28,7 @@ const styles = StyleSheet.create({
   textContainer: {
     justifyContent: "center",
     alignItems: "center",
+    marginEnd: 20,
   },
   baseText: {
     fontWeight: "bold",

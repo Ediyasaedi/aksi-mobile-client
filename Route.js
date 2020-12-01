@@ -10,6 +10,7 @@ import {
   QuestionsPage,
   Register,
   ResultPage,
+  ReviewPage,
   SignIn,
   SplashScreen,
 } from "./screens";
@@ -135,6 +136,14 @@ export function Route() {
               <Stack.Screen
                 name="QuestionsPage"
                 component={QuestionsPage}
+                options={({ navigation, route }) => ({
+                  headerTitle: (props) => <Logo navigation={navigation} />,
+                  headerRight: () => <ProfileIcon navigation={navigation} />,
+                })}
+              />
+              <Stack.Screen
+                name="ReviewPage"
+                component={ReviewPage}
                 options={({ navigation, route }) => ({
                   headerTitle: (props) => <Logo navigation={navigation} />,
                   headerRight: () => <ProfileIcon navigation={navigation} />,

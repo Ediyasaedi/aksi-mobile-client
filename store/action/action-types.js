@@ -4,3 +4,4 @@ export const SET_TOKEN = "SET_TOKEN";
 export const SET_WACANAS = "SET_WACANAS";
 export const SET_ARTICLES = "SET_ARTICLES";
 export const SET_QUESTIONS = "SET_QUESTIONS";
+export const SET_NILAI = "SET_NILAI";

@@ -8,6 +8,7 @@ import {
   SET_WACANAS,
   SET_ARTICLES,
   SET_QUESTIONS,
+  SET_NILAI,
 } from "./action-types";
 
 const baseUrl = "http://192.168.43.7:3000";
@@ -106,6 +107,24 @@ export const getQuestions = (id) => {
 export const setQuestions = (data) => {
   return {
     type: SET_QUESTIONS,
+    payload: data,
+  };
+};
+
+export const getNilai = (id) => {
+  return (dispatch) => {
+    axios
+      .get(`${baseUrl}/app/nilai/${id}`)
+      .then(({ data }) => {
+        dispatch(setNilai(data.nilai));
+      })
+      .catch(console.log);
+  };
+};
+
+export const setNilai = (data) => {
+  return {
+    type: SET_NILAI,
     payload: data,
   };
 };

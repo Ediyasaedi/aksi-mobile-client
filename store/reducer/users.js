@@ -1,4 +1,9 @@
-import { IS_AUTHENTICATION, SET_USER, SET_TOKEN } from "../action/action-types";
+import {
+  IS_AUTHENTICATION,
+  SET_USER,
+  SET_TOKEN,
+  SET_NILAI,
+} from "../action/action-types";
 
 const initState = {
   isAuthentication: false,
@@ -6,6 +11,7 @@ const initState = {
   user: {},
   isLoading: false,
   isSignout: false,
+  nilaiArray: [],
 };
 
 export default function usersState(state = initState, { type, payload }) {
@@ -20,6 +26,8 @@ export default function usersState(state = initState, { type, payload }) {
       return (state = { ...state, token: payload, isLoading: false });
     case SET_USER:
       return (state = { ...state, user: payload });
+    case SET_NILAI:
+      return (state = { ...state, nilaiArray: payload });
     default:
       return state;
   }

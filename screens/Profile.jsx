@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Avatar, Accessory, Badge } from "react-native-elements";
+import { Avatar, Accessory, Card } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { Skor } from "../components";
+import { useDispatch, useSelector } from "react-redux";
+import { getNilai } from "../store/action";
 
 export default function ResultPage() {
+  const nilai = useSelector((state) => state.users.nilaiArray);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    //harus ngambil id dari berhasil login
+    dispatch(getNilai(14));
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.textContainer}>
@@ -27,32 +37,33 @@ export default function ResultPage() {
           <Text style={styles.baseText}>Edi Yasa</Text>
           <Text style={styles.baseText}>SMAN 1 Kota Palangkaraya</Text>
         </View>
-        <View style={styles.toQuestions}>
-          <Skor title="Hoaks" skor="100" />
-          <Skor title="Nontunai" skor="80" />
-          <Skor title="Glokalisasi" skor="90" />
-          <Skor title="Robotik" skor="80" />
-          <Skor title="Hoaks" skor="100" />
-          <Skor title="Nontunai" skor="80" />
-          <Skor title="Glokalisasi" skor="90" />
-          <Skor title="Robotik" skor="80" />
-          <Skor title="Hoaks" skor="100" />
-          <Skor title="Nontunai" skor="80" />
-          <Skor title="Glokalisasi" skor="90" />
-          <Skor title="Robotik" skor="80" />
-          <Skor title="Hoaks" skor="100" />
-          <Skor title="Nontunai" skor="80" />
-          <Skor title="Glokalisasi" skor="90" />
-          <Skor title="Robotik" skor="80" />
-          <Skor title="Hoaks" skor="100" />
-          <Skor title="Nontunai" skor="80" />
-          <Skor title="Glokalisasi" skor="90" />
-          <Skor title="Robotik" skor="80" />
-          <Skor title="Hoaks" skor="100" />
-          <Skor title="Nontunai" skor="80" />
-          <Skor title="Glokalisasi" skor="90" />
-          <Skor title="Robotik" skor="80" />
-        </View>
+        {nilai.length > 0 ? (
+          <Card>
+            <Text style={styles.baseText}>Riwayat Skor:</Text>
+            <View style={styles.toQuestions}>
+              {nilai.map((value) => {
+                return (
+                  <Skor
+                    title={value.Wacana.title}
+                    skor={value.Nilai}
+                    date={value.createdAt}
+                    key={value.id}
+                  />
+                );
+              })}
+            </View>
+          </Card>
+        ) : (
+          <Card>
+            <Text style={styles.baseText}>
+              Kamu belum memiliki daftar nilai.
+            </Text>
+            <Text style={styles.baseText}>
+              Silahkan pilih wacana yang ingin kamu baca dan jawab semua
+              pertanyaan yang diberikan.
+            </Text>
+          </Card>
+        )}
       </View>
     </ScrollView>
   );

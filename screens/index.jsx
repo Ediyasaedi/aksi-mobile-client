@@ -7,6 +7,7 @@ import ResultPage from "./ResultPage";
 import SplashScreen from "./SplashScreen";
 import Profile from "./Profile";
 import SignIn from "./SignIn";
+import ReviewPage from "./ReviewPage";
 
 export {
   ArticlePage,
@@ -18,4 +19,5 @@ export {
   SplashScreen,
   Profile,
   SignIn,
+  ReviewPage,
 };
