@@ -32,8 +32,7 @@ export default function Login({ navigation: { navigate } }) {
 
   function handleOnSubmit() {
     let payload = { email, password };
-    dispatch(loginUser(payload));
-    signIn(token);
+    signIn(payload);
   }
 
   return (

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View } from "react-native";
 import { Avatar, Icon } from "react-native-elements";
 import { AuthContext } from "../Route";
 
 export default function ProfileIcon({ navigation }) {
-  const { signOut } = React.useContext(AuthContext);
+  const { signOut } = useContext(AuthContext);
   return (
     <View
       style={{

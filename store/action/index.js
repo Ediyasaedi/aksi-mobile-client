@@ -9,6 +9,9 @@ import {
   SET_ARTICLES,
   SET_QUESTIONS,
   SET_NILAI,
+  SIGN_IN,
+  RESTORE_TOKEN,
+  SIGN_OUT,
 } from "./action-types";
 
 const baseUrl = "http://192.168.43.7:3000";
@@ -45,14 +48,27 @@ export const loginUser = (payload) => {
 
 export const setToken = (data) => {
   return {
-    type: SET_TOKEN,
+    type: SIGN_IN,
     payload: data.token,
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: SIGN_OUT,
   };
 };
 
 export const setAuth = (data) => {
   return {
     type: SET_TOKEN,
+    payload: data,
+  };
+};
+
+export const restoreToken = (data) => {
+  return {
+    type: RESTORE_TOKEN,
     payload: data,
   };
 };

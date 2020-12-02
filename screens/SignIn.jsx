@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 const AuthContext = React.createContext();
 
 export default function SignInScreen() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const { signIn } = React.useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   return (
     <View>

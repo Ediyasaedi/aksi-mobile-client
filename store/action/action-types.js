@@ -5,3 +5,6 @@ export const SET_WACANAS = "SET_WACANAS";
 export const SET_ARTICLES = "SET_ARTICLES";
 export const SET_QUESTIONS = "SET_QUESTIONS";
 export const SET_NILAI = "SET_NILAI";
+export const RESTORE_TOKEN = "RESTORE_TOKEN";
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_OUT = "SIGN_OUT";
