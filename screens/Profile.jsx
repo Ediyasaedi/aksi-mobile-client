@@ -8,11 +8,14 @@ import { getNilai } from "../store/action";
 
 export default function ResultPage() {
   const nilai = useSelector((state) => state.users.nilaiArray);
+  const UserId = useSelector((state) => state.users.userLogin.id);
+  const userName = useSelector((state) => state.users.userLogin.name);
+  const imageUser = useSelector((state) => state.users.userLogin.image);
   const dispatch = useDispatch();
 
   useEffect(() => {
     //harus ngambil id dari berhasil login
-    dispatch(getNilai(14));
+    dispatch(getNilai(UserId));
   }, []);
 
   return (
@@ -29,13 +32,13 @@ export default function ResultPage() {
             size="xlarge"
             rounded
             source={{
-              uri: "https://www.fillmurray.com/640/360",
+              uri: imageUser,
             }}
+            avatarStyle={{ borderColor: "black", borderWidth: 10 }}
           >
             <Accessory />
           </Avatar>
-          <Text style={styles.baseText}>Edi Yasa</Text>
-          <Text style={styles.baseText}>SMAN 1 Kota Palangkaraya</Text>
+          <Text style={styles.baseText}>{userName}</Text>
         </View>
         {nilai.length > 0 ? (
           <Card>

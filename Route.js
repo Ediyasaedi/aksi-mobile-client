@@ -33,7 +33,9 @@ export function Route() {
 
       try {
         userToken = await AsyncStorage.getItem("userToken");
-      } catch (e) {}
+      } catch (e) {
+        alert("Login Failed, Please Try Again!");
+      }
       dispatch(restoreToken(userToken));
     };
 

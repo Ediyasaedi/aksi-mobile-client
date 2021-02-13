@@ -3,6 +3,7 @@ import {
   SET_USER,
   SET_TOKEN,
   SET_NILAI,
+  SET_USER_LOGIN,
 } from "../action/action-types";
 
 const initState = {
@@ -12,6 +13,7 @@ const initState = {
   isLoading: false,
   isSignout: false,
   nilaiArray: [],
+  userLogin: {},
 };
 
 export default function usersState(state = initState, { type, payload }) {
@@ -28,6 +30,8 @@ export default function usersState(state = initState, { type, payload }) {
       return (state = { ...state, user: payload });
     case SET_NILAI:
       return (state = { ...state, nilaiArray: payload });
+    case SET_USER_LOGIN:
+      return (state = { ...state, userLogin: payload });
     default:
       return state;
   }

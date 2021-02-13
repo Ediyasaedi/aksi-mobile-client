@@ -2,8 +2,11 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { ReviewDetail } from "../components/index";
+import { useSelector } from "react-redux";
 
-export default function ReviewPage({ navigation: { navigate } }) {
+export default function ReviewPage({ navigation: { navigate }, route }) {
+  const { title } = route.params;
+  const answers = useSelector((state) => state.questions.answers);
   return (
     <ScrollView>
       <View
@@ -13,45 +16,18 @@ export default function ReviewPage({ navigation: { navigate } }) {
         }}
       >
         <Text style={styles.baseText}>
-          Hasil review wacana: <Text style={styles.innerText}>Hoaks</Text>
+          Review wacana: <Text style={styles.innerText}>{title}</Text>
         </Text>
       </View>
       <View style={styles.toQuestions}>
-        <ReviewDetail
-          soal="Apakah ini soal yang pertama?"
-          jawaban="Iyaa dong"
-          kunci_jawaban="Iyaa"
-        />
-        <ReviewDetail
-          soal="Apakah ini soal yang kedua yang harusnya lebih panjang?"
-          jawaban="Iyaa dong"
-          kunci_jawaban="Iyaa"
-        />
-        <ReviewDetail
-          soal="Apakah ini soal yang ketiga?"
-          jawaban="Kedua"
-          kunci_jawaban="Ketiga"
-        />
-        <ReviewDetail
-          soal="Apakah ini soal yang keempat?"
-          jawaban="Kedua"
-          kunci_jawaban="Ketiga"
-        />
-        <ReviewDetail
-          soal="Apakah ini soal yang kelima?"
-          jawaban="Kedua"
-          kunci_jawaban="Ketiga"
-        />
-        <ReviewDetail
-          soal="Apakah ini soal yang keenam?"
-          jawaban="Jawab siswa yang kedua adalah aku adalah aku"
-          kunci_jawaban="Ketiga"
-        />
-        <ReviewDetail
-          soal="Apakah ini soal yang ketujuh?"
-          jawaban="Kedua"
-          kunci_jawaban="Ketiga"
-        />
+        {answers.map((asw) => (
+          <ReviewDetail
+            key={asw.id}
+            soal={asw.soal}
+            jawaban={asw.jawaban}
+            kunci_jawaban={asw.kunci}
+          />
+        ))}
       </View>
       <View style={{ justifyContent: "center", alignContent: "center" }}>
         <TouchableOpacity

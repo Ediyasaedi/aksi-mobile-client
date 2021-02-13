@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { View } from "react-native";
 import { Avatar, Icon } from "react-native-elements";
 import { AuthContext } from "../Route";
+import { useSelector } from "react-redux";
 
 export default function ProfileIcon({ navigation }) {
   const { signOut } = useContext(AuthContext);
+
+  const imageUser = useSelector((state) => state.users.userLogin.image);
   return (
     <View
       style={{
@@ -18,7 +21,7 @@ export default function ProfileIcon({ navigation }) {
         size="small"
         rounded
         source={{
-          uri: "https://www.fillmurray.com/640/360",
+          uri: imageUser,
         }}
         onPress={() => navigation.navigate("Profile")}
       />

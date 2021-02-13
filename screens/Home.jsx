@@ -7,6 +7,7 @@ import { getWacanas } from "../store/action";
 
 export default function Home({ navigation }) {
   const wacanas = useSelector((state) => state.wacanas.wacanaList);
+  const userName = useSelector((state) => state.users.userLogin.name);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function Home({ navigation }) {
         <View>
           <View style={styles.textContainer}>
             <Text style={styles.baseText}>
-              Hallo, <Text style={styles.innerText}>Edi Yasa,</Text>
+              Hallo, <Text style={styles.innerText}>{userName},</Text>
             </Text>
             <Text style={styles.subText}>
               Silahkan memilih wacana yang akan kamu kerjakan:

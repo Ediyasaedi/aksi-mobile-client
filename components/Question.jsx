@@ -7,7 +7,7 @@ import RadioForm, {
 } from "react-native-simple-radio-button";
 
 export default function Question({ question, getValue }) {
-  const [value, setValue] = useState(question.pilihan_a);
+  const [value, setValue] = useState("");
   let radio_props = [
     { label: question.pilihan_a, value: question.pilihan_a },
     { label: question.pilihan_b, value: question.pilihan_b },
@@ -17,7 +17,17 @@ export default function Question({ question, getValue }) {
 
   function setState(v) {
     setValue(v);
-    getValue(v, question.id);
+    let payload = {
+      id: question.id,
+      soal: question.soal,
+      kunci: question.kunci_jawaban,
+      jawaban: v,
+    };
+    if (v === question.kunci_jawaban) {
+      getValue(1, payload);
+    } else {
+      getValue(0, payload);
+    }
   }
 
   return (

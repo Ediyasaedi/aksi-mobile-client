@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ScrollView,
   View,
@@ -8,35 +8,32 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Question } from "../components";
-import { getQuestions } from "../store/action";
+import { getQuestions, setAnswers } from "../store/action";
 
 export default function QuestionsPage({ route, navigation }) {
   const { itemId, title } = route.params;
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions.questionList);
   const answers = [];
+  let skor = 0;
 
   useEffect(() => {
     dispatch(getQuestions(itemId));
   }, []);
 
-  function getValue(v, id) {
-    console.log(v, id);
-    answers.forEach((val) => {
-      if (id === undefined) {
-        answers.push({
-          id,
-          value: v,
-        });
-      } else if (val.id === id) {
-        val.value = v;
-      }
-    });
-    console.log(answers);
+  function getValue(v, obj) {
+    answers.push(obj);
+    skor += v;
   }
 
   function submitTest() {
-    navigation.navigate("ResultPage");
+    dispatch(setAnswers(answers));
+    let result = Math.round((skor / questions.length) * 100);
+    navigation.navigate("ResultPage", {
+      title,
+      skor: result,
+      itemId,
+    });
   }
 
   return (
@@ -62,7 +59,7 @@ export default function QuestionsPage({ route, navigation }) {
               <Question
                 key={question.id}
                 question={question}
-                getValue={(v, id) => getValue(v, id)}
+                getValue={(v, obj) => getValue(v, obj)}
               />
             );
           })}

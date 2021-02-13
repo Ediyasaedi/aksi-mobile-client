@@ -8,3 +8,5 @@ export const SET_NILAI = "SET_NILAI";
 export const RESTORE_TOKEN = "RESTORE_TOKEN";
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
+export const SET_ANSWERS = "SET_ANSWERS";
+export const SET_USER_LOGIN = "SET_USER_LOGIN";

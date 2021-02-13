@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import {
   IS_AUTHENTICATION,
-  SET_TOKEN,
+  SET_USER_LOGIN,
   SET_USER,
   SET_USERS,
   SET_WACANAS,
@@ -12,9 +12,12 @@ import {
   SIGN_IN,
   RESTORE_TOKEN,
   SIGN_OUT,
+  SET_ANSWERS,
 } from "./action-types";
 
-const baseUrl = "http://192.168.43.7:3000";
+const baseUrl = "http://192.168.100.27:3000";
+// const baseUrl = "http://localhost:3000";
+// const baseUrl = "http://192.168.100.27:3000";
 
 export const registerUser = (payload) => {
   return (dispatch) => {
@@ -40,7 +43,7 @@ export const loginUser = (payload) => {
       .post(`${baseUrl}/app/login`, payload)
       .then(({ data }) => {
         dispatch(setToken(data));
-        dispatch(setAuth(true));
+        dispatch(setAuth({ id: data.id, name: data.name, image: data.image }));
       })
       .catch(console.log);
   };
@@ -53,6 +56,13 @@ export const setToken = (data) => {
   };
 };
 
+export const setAnswers = (data) => {
+  return {
+    type: SET_ANSWERS,
+    payload: data,
+  };
+};
+
 export const logoutUser = () => {
   return {
     type: SIGN_OUT,
@@ -61,7 +71,7 @@ export const logoutUser = () => {
 
 export const setAuth = (data) => {
   return {
-    type: SET_TOKEN,
+    type: SET_USER_LOGIN,
     payload: data,
   };
 };
@@ -124,6 +134,18 @@ export const setQuestions = (data) => {
   return {
     type: SET_QUESTIONS,
     payload: data,
+  };
+};
+
+export const saveNilai = (payload) => {
+  return (dispatch) => {
+    axios
+      .post(`${baseUrl}/app/nilai/`, payload)
+      .then(({ data }) => {
+        // dispatch(setNilai(data.nilai));
+        console.log(data);
+      })
+      .catch(console.log);
   };
 };
 

@@ -1,7 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { saveNilai } from "../store/action";
 
-export default function ResultPage({ navigation: { navigate } }) {
+export default function ResultPage({ navigation: { navigate }, route }) {
+  const { title, skor, itemId } = route.params;
+  const UserId = useSelector((state) => state.users.userLogin.id);
+  const dispatch = useDispatch();
+
+  function saveSkor() {
+    const payload = {
+      WacanaId: itemId,
+      UserId,
+      NilaiValue: skor,
+    };
+    dispatch(saveNilai(payload));
+    navigate("Profile");
+  }
+
   return (
     <View style={styles.textContainer}>
       <View
@@ -13,22 +29,23 @@ export default function ResultPage({ navigation: { navigate } }) {
       >
         <Text style={styles.baseText}>
           Kamu telah menyelesaikan wacana:{" "}
-          <Text style={styles.innerText}>Hoaks</Text>
+          <Text style={styles.innerText}>{title}</Text>
         </Text>
         <Text style={styles.baseText}>
-          Skor kamu: <Text style={styles.innerText}>80</Text>
+          Skor kamu: <Text style={styles.innerText}>{skor}</Text>
         </Text>
       </View>
       <View style={styles.toQuestions}>
-        <TouchableOpacity
-          style={styles.btnStyles}
-          onPress={() => navigate("Profile")}
-        >
+        <TouchableOpacity style={styles.btnStyles} onPress={saveSkor}>
           <Text style={{ color: "white" }}>Simpan</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnStyles}
-          onPress={() => navigate("ReviewPage")}
+          onPress={() =>
+            navigate("ReviewPage", {
+              title,
+            })
+          }
         >
           <Text style={{ color: "white" }}>Coba Lagi</Text>
         </TouchableOpacity>
